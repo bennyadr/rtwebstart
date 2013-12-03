@@ -16,6 +16,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
                 'application.components.*',
+                'application.helpers.*',
 	),
 
 	'modules'=>array(
@@ -86,5 +87,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'rcruz@risingtide.ph',
+                'salt'=>'P1qaF2ewFe3dVd3cefEHFsd3f8sdf9j39nv8edNfiew0NCiDpSuiJnI'
 	),
 );

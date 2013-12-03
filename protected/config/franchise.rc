@@ -1,0 +1,943 @@
+# Authors: IG Technical Developers for Local Operation
+# Revision 2007-05-07 - New Prepaid Touch Mobile numbers within section TOUCHMOBILE_905
+#						7[6-9]
+#						8[0-8]
+#						9[0-7]
+#		
+# Revision 2007-06-13 - GLOBEPREPAID_906 range 906([2-7]|3[0-7]|39|5[01235]|8[01]) conflicts with TOUCHMOBILE_906 range 906([678]\d
+#                             GLOBEPREPAID_906 range 906([2-7]|3[0-7]|39|5[01235]|8[01]) is changed to 906([2-5]|3[0-7]|39|5[01235])
+#                       GLOBEPREPAID_905 range 905([2-7]\d|8[01])\d conflicts with TOUCHMOBILE_905 range 905(82|7[6-9]|8[0-8]|9[0-7])
+#                             GLOBEPREPAID_905 range is changed to 905(2\d|3[0-7])\d 
+#
+#
+# Revision 2007-10-12 - Based on the email of Clarence Guerero last 2007-10-09
+#                       TOUCHMOBILE_905 range (0|63)905(82|7[6-9]|8[0-8]|9[0-7])\d{5} is still intact
+#                       GLOBEPREPAID_906 range (0|63)906([2-5]\d|3[0-7]|39|5[01235])\d{5} changed to (0|63)906([2-5]\d|3[0-9]|5[01235])\d{5}
+#
+#
+#                     - Based on the email of Jonah to Dexter last 2007-10-02
+#                       New sun prepaid ranges 923 series 
+#                       SUNCELLULAR_PREPAID_923 range (0|63)923([2-7]\d{6})
+#
+#
+# Revision 2007-10-17 - Based on the email of Stan Chua last 2007-10-16 as defined in VALERO 090544[0-9] range is GHP
+#                       GLOBEPREPAID_905 range (0|63)905(2\d|3[0-9]|4[0-3])\d{5} changed to (0|63)905(2\d|3[0-9]|4[0-4])\d{5}
+#
+# Revision 2007-10-18 - Temporary range to handle 09187 Smart new series. To be verified to Smart telco technical
+#                       SMARTPOSTPAID_GOLD9187
+#
+# Revision 2007-10-18 - 09187 series is a talkntext prepaid. Based on the email of Mae Darlucio IT/3125, 0918740XXXX-741XXXX series 
+#                       are for talkntext prepaid
+#                       SMARTPOSTPAID_GOLD9187 removed
+#                       TALKNTEXT_09187
+# Revision 2007-10-18 - 0909 talkntext series
+#                       TALKNTEXT range is changed from (0|63)9(1[89]7|207|10\d)\d{6} to (0|63)9(1[89]7|207|10\d|09\d)\d{6}
+#
+# Revision 2007-10-18 - SMARTPREPAID range revision
+#                       (0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|291)\d{6} changed to (0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|29[12])\d{6}
+#
+# Revision 2007-11-16 - SMARTPREPAID range revision for 0929[12] to 0929[123]
+#			(0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|29[12])\d{6}$ changed to (0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|29[123])\d{6}$
+#
+# Revision 2008-04-30 - SMARTPREPAID range revision from 0929[123] changed to 0929[1-9]
+#			(0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|29[123])\d{6}$ changed to (0|63)9(1[89][0-68]|20[0-68]|21\d|28[23467]|091|29[1-9])\d{6}$
+#
+# Revision 2008-04-30 - SUNCELLULAR_PREPAID_923 range revision from 0923[2-7] to 0923[1-6]|[8-9]
+#			(0|63)923([2-7]\d{6})$ changed to (0|63)923(([1-6]|[8-9])\d{6})$
+#			removed the range 0923-7 to sun cellular prepaid ranges
+#			0923-7 belongs to sun cellular postpaid ranges
+#
+# Revision 2008-04-30 - Based on the email of Sophia to Edlin last 2008-04-10 and by confirmation by Edwin Medalla
+#			SUNCELLULAR_POSTPAID_923 is added to isolate 0923-7 to SUNCELLULAR_PREPAID_923
+#                       (0|63)923(7\d{6})$
+# 
+# Revision 2008-04-30 - TOUCHMOBILE_905 range revision from 09057[6-9] to 09057[0-9] and 09058[0-8] to 09058[0-9] 
+#		        (0|63)905(82|7[6-9]|8[0-8]|9[0-7])\d{5}$ changed to (0|63)905(82|6[7-9]|7[0-9]|8[0-9]|9[0-7])\d{5}$
+#
+# Revision 2008-04-30 - GLOBEPREPAID_905 range revision from 09054[0-4] to 09054[0-9]
+# 	 	 	(0|63)905(2\d|3[0-9]|4[0-4])\d{5}$ (0|63)905(2\d|3[0-9]|4[0-9])\d{5}$
+#
+# Revision 2008-05-15 - TOUCHMOBILE_935 range added based on email of Stan Chua (2008-05-15) to Sir Allen,Dexter,Jonathan and Edlin
+#                       (0|63)935\d{7}$    
+#
+# Revision 2008-05-15 - GLOBEPOSTPAID_937 range added based on email of Stan Chua (2008-05-15) to Sir Allen, Dexter,Jonathan and Edlin
+#  
+# Revision 2008-05-19 - GLOBEPREPAID_937 range added based on confirmation of Stan Chua via email (2008-05-19) to Sir Allen, Dexter, Jonathan, and Edlin
+#
+# Revision 2008-06-12 - Based on email of Stan Chua (2008-05-27) range 091954 removed from SMARTPREPAID and added to SMARTPOSTPAID section
+#
+# Revision 2008-06-26 - GLOBEPREPAID_905 range revision from 09054[0-9] to 09055[0-36] and additional 090566x-xxxx Based on email Stan Chua June 24 2008
+#                        from  (0|63)905(2\d|3[0-9]|4[0-9])\d{5}$  to (0|63)905(2\d|3[0-9]|4[0-9]|5[0-36]|66)\d{5}$
+# Revision 2008-07-25 - SMARTPREPAID additional range 0908xxxxxxx
+#			(0|63)9(18[0-68]\d|19([0-468]\d|5([1-3]|[5-9]))|20[0-68]\d|21\d{2}|28[23467]\d|091\d|29[1-9]\d)\d{5}$ changed to
+#             	        (0|63)9(18[0-68]\d|19([0-468]\d|5([1-3]|[5-9]))|20[0-68]\d|21\d{2}|28[23467]\d|091\d|29[1-9]\d|08\d{2})\d{5}$
+#
+# Revision 2008-08-13 - TALKNTEXT range revision additional +63907xxxxxxx confirmed by Sir Stan via email august 13 2008  
+#        		(0|63)9(1[89]7|207|10\d|09\d)\d{6}$ changed to (0|63)9(1[89]7|207|10\d|09\d|07\d)\d{6}$
+#        		
+# Revision 2008-08-22 - SMARTPOSTPAID range revision - 09088xxxxxx was removed to prepaid category as requested by Stan via email
+#
+#
+# Revision 2008-09-09 - SMARTPREPAID range revision - 091950xxxx was added as per Stan/Star's email sept 09 2008
+#
+#
+# Revision 2008-09-17 - TOUCHMOBILE_916 range revision added 09161([0-4]|[89])xxxxx based on Sir Wilson's checklist (Aug 22 2008)
+#                       (0|63)916(8[2-9]|9\d)\d{5}$ changed to
+#		        (0|63)916(8[2-9]|9\d|1([0-4]|[89]))\d{5}$    
+#                       
+#                       
+# Revision 2008-09-17 - TOUCHMOBILE_926 range revision added 09261[0-9]xxxxx based on Sir Wilson's checklist (Aug 22 2008)
+#                       (0|63)926([2-5]\d|60|7[6-9]|8\d|9\d)\d{5}$ changed to
+#                       (0|63)926(1[0-9]|[2-5]\d|60|7[6-9]|8\d|9\d)\d{5}$    
+#        
+#                       
+# Revision 2008-09-17 - TOUCHMOBILE_906 range revision added 09061([0-3]|[6-9])xxxxx based on Sir Wilson's checklist (Aug 22 2008)
+#                       (0|63)906([678]\d|8[2-9]|9[0-7])\d{5}$ changed to
+#                       (0|63)906(1([0-3]|[6-9])|[678]\d|8[2-9]|9[0-7])\d{5}$
+#
+#
+# Revision 2008-09-17 - TOUCHMOBILE_905 range revision added 09051[37]xxxxx based on Sir Wilson's checklist (Aug 22 2008)
+#                       (0|63)905(82|6[7-9]|7[0-9]|8[0-9]|9[0-7])\d{5}$ changed to
+#                       (0|63)905(1[37]|82|6[7-9]|7[0-9]|8[0-9]|9[0-7])\d{5}$
+#
+# Revision 2009-02-12 - TOUCHMOBILE_905 range revision added 0905(1[3-7]|5[89]|82|6([0-5]|[7-9])xxxxx based on Stan's checklist (Feb 06 2009)
+#                       (0|63)905(1[37]|82|6[7-9]|7[0-9]|8[0-9]|9[0-7])\d{5}$ changed to
+# 		        (0|63)905(1[3-7]|5[89]|82|6([0-5]|[7-9])|7[0-9]|8[0-9]|9[0-7])\d{5}$
+#
+# Revision 2009-02-12 - TOUCHMOBILE_906 range revision added 09061([0-5])xxxxx based on Stan's checklist (Feb 06 2009)
+#                       (0|63)906(1([0-3]|[6-9])|[678]\d|8[2-9]|9[0-7])\d{5}$ changed to
+#		        (0|63)906(1([0-5]|[6-9])|[678]\d|8[2-9]|9[0-7])\d{5}$
+#
+# Revision 2009-02-12 - TOUCHMOBILE_916 range revision added 09161([0-7])xxxxx based on Stan's checklist (Feb 06 2009)
+#		        (0|63)916(8[2-9]|9\d|1([0-4]|[89]))\d{5}$ changed to   
+#			(0|63)916(8[2-9]|9\d|1([0-7]|[89]))\d{5}$    
+#
+# Revision 2009-02-12 - GLOBEPREPAID_905 range revision from 5[0-36]|66 to 5([0-36]|[4-57])|66 Based on email Stan's Checklist (Feb 06 2009)
+#        		(0|63)905(2\d|3[0-9]|4[0-9]|5[0-36]|66)\d{5}$ changed to
+#		        (0|63)905(2\d|3[0-9]|4[0-9]|5([0-36]|[4-57])|66)\d{5}$
+#
+# Revision 2009-02-12 - GLOBEPREPAID_915 range revision from 915[2-9] to 915(1(1|[7-9])|[2-9]\d) Based on email Stan's Checklist (Feb 06 2009)
+#        		(0|63)915[2-9]\d{6}$ changed to
+#        		(0|63)915(1(1|[7-9])|[2-9]\d)\d{5}$
+#
+# Revision 2009-04-27 - SUNCELLULAR_PREPAID_932 new range added as per Sophie's email april 27 2009
+#
+# Revision 2009-06-10 - REDMOBILE_PREPAID new range/section 0999xxxxxxx and 0938xxxxxxx as per Pro's email (June 10 2009)
+#
+# Revision 2009-06-10 - SMARTPREPAID revised range as per allen's email (June 10 2009).
+#			(0|63)9(18[0-6]\d|19([0-468]\d|5(0|[1-3]|[5-9])|9[028])|20[0-68]\d|21\d{2}|28([23467]\d|59)|091\d|29[1-9]\d|08[0-79]\d)\d{5}$ changed to
+#			(0|63)9(18[0-6]\d|19([0-468]\d|5(0|[1-3]|[5-9])|9[02-8])|20[0-68]\d|21\d{2}|28([23467]\d|59)|091\d|29[1-9]\d|08[0-79]\d)\d{5}$
+#
+# Revision 2009-07-07 - SMARTPREPAID revised range for SMARTBRO conflict as per stan's email (July 07 2009)
+#             	     (0|63)9(18[0-6]\d|19([0-468]\d|5(0|[1-3]|[5-9])|9[02-8])|20[0-68]\d|21\d{2}|28([23467]\d|59)|091\d|29[1-9]\d|08[0-79]\d)\d{5}$ changed to
+#                    (0|63)9(18[0-6]\d{2}|19([0-468]\d{2}|5(0|[1-3]|[5-9])|9[02-8])|20[0-68]\d{2}|21\d{3}|28([23467]\d{2}|59)|091\d{2}|29([1-8]|9[0-7])\d{2}|08[0-79]\d{2})\d{4}$
+#
+# Revision 2009-07-07 - SMARTPOSTPAID revised range for SMARTBRO conflict as per stan's email (July 07 2009)
+#			(63|0)9(189\d|19(9[19]|54)|209\d|28(5[125]|8\d)|088\d)\d{5} changed to
+#			(63|0)9(189\d{2}|19(9[19]|54)|209\d{2}|28(5[125]|8\d{2})|08(8[1-6]|87[2-9]))\d{4}
+#
+# Revision 2009-07-07 - SMARTBROPOSTPAID additional ranges as per stan's email (July 07 2009)
+#
+# Revision 2009-07-07 - SMARTBROPREPAID additional ranges as per stan's email (July 07 2009)
+#
+# Revision 2009-07-13 - SMARTPINOY additional ranges as per stan's email (July 13 2009)
+#
+# Revision 2009-09-10 - SUNCELLULAR_PREPAID_933 added as new range for sun cell as per pam's email (September 10 2009)
+#
+# Revision 2009-09-10 - SUNCELLULAR_PREPAID_923 range revision as per pam's email (September 10 2009) 
+#			(0|63)923(([1-6]|[8-9])\d{6})$  changed to 
+#        		(0|63)923(([1-6]\d{2}|[8-9]\d{2}|7(([0-1][0-9])|([5-9][0-9])))\d{4})$
+#        
+# Revision 2009-09-10 - SUNCELLULAR_POSTPAID_923 range revision as per pam's email (September 10 2009)
+#        		(0|63)923(7\d{6})$ changed to
+#        		(0|63)923(7([2-4][0-9])\d{4})$
+#
+# Revision 2009-10-13 - SMARTPREPAID_939 additional range as per stan's email (October 13 2009)
+#
+# Revision 2009-10-29 - TALKNTEXT range revision additional +63930xxxxxxx confirmed by Stan via email October 27 2009
+#                       (0|63)9(1[89]7\d|207\d|10\d{2}|09\d{2}|07\d{2}|285[34678])\d{5}$  changed to  
+#                       (0|63)9(1[89]7\d|207\d|10\d{2}|09\d{2}|07\d{2}|285[34678]|30\d{2})\d{5}$
+#
+# Revision 2010-02-09 - TALKNTEXT additional range +63948xxxxxxx  and Smart Buddy 0949(see <TALKNTEXT_0948> and <SMART_0949>)
+#
+#
+# Revision 2010-03-25 - Globe Prepaid  additional range "( 0915 ) 12x-xxxx" - email from Louie Tanlu March 25 2010
+#
+# Revision 2010-10-04 - SUN Prepaid  additional range 0942-XXXXXXX and 0943-XXXXXXX - email from Pam Sep 29 2010
+#
+# Revision 2010-11-11 - modified SMART ranges, 0949 and 0948 - email from Master Allen Nov 5, 2010
+#
+# Revision 2011-02-22 - modified SMART ranges, 0946 (TNT) and 0947 (Buddy) as Smart number - email from stan 2/18/2011 
+#
+# Revision 2011-02-23 - modified SMART ranges, 0999 split into red mobile, Buddy and Gold - email from stan 9/11/2010
+#
+# Revision 2011-03-10 - modified SMART ranges, MODIFIED SMARTPOSTPAID, SMARTPREPAID, _0946, _0947, ADD _0920 Sections  - email from stan 9/11/2010
+#
+# Revision 2011-04-01 - modified SMART ranges, MODIFIED SMARTPOSTPAID, ADDED Section SMARTPOSTPAID_GOLD_908
+#
+# Revision 2011-05-11 - modified TALKNTEXT_0946, SMART_BUDDY_0947, ADDED SMARTPREPAID_REDMOBILE_998, SMARTBROPOSTPAID_0947
+#
+# Revision 2011-06-21 - added range on SMART_BUDDY_0947(5x)
+#
+# Revision 2011-07-22 - modified smart ranges 0947, 0948,0949
+#
+# Revision 2011-10-13 - added TM-0905(1x), GHP-0915(1x),GHP-0927(10x) and SMARTGOLD-0947(89x,99x),SMARTPOSTPAID-0920(921x)
+#
+# Revision 2011-10-09 - Sun Cell Landline ranges added, treated as postpaid as per Pam Tanjangco
+#
+# Revision 2012-05-15 - Smart 09479(2x-8x) Smart Buddy
+#
+# Revision 2012-07-20 - add Smart Buddy (0998x), remove 0998 Red mobile
+#
+# Revision 2012-07-24 - add Sun Broadband Wireless(SBW) ranges. Blocked in SMS servers using blockperm.rc
+#
+# Revision 2012-08-23 - Rewritten and applied new ranges for Smart Bro sections
+#
+# Revision 2013-01-04 - update Sun 0925 to have +63925(0,1,2,3,4,5,6,7)xxxxxx ranges
+#
+# Revision 2013-03-20 - update Globe 09373 to postpaid 
+
+<TELCOFRANCHISE>
+
+   # ------------------------ GLOBE POSTPAID RANGES ------------------------
+   
+   <GLOBEPOSTPAID_917>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)917(3[012]|5\d|6[23578]|7[01279]|8\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPOSTPAID_917>
+   
+   <GLOBEPOSTPAID_906>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)906(9[89])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPOSTPAID_906>
+   
+   <GLOBEPOSTPAID_905>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)905(9[89])\d{5}$
+        MSISDN_POSIBLE_FORMAT = ^\+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPOSTPAID_905>
+
+   <GLOBEPOSTPAID_937>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)937(3|8)\d{6}$
+        MSISDN_POSIBLE_FORMAT = ^\+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPOSTPAID_937>
+      
+   # ------------------------ GLOBE PREPAID RANGES -------------------------
+   
+   <GLOBEPREPAID_917>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)917(2\d|3[3-9]|4\d|6[01469]|7[34568]|9\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_917>
+
+   <GLOBEPREPAID_916>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)916[2-7]\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_916>
+   
+   <GLOBEPREPAID_915>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)915(1([0-5]|[7-9])|[2-9]\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_915>
+   
+   <GLOBEPREPAID_926>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)926(6[1-9]|7[0-5])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_926>
+
+   <GLOBEPREPAID_927>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)927[1-9]\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_927>
+   
+   <GLOBEPREPAID_905>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)905(2\d|3[0-9]|4[0-9]|5([0-36]|[4-57])|66)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_905>
+   
+   <GLOBEPREPAID_906>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)906([2-5]\d|3[0-9]|5[01235])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_906>
+   
+   <GLOBEPREPAID_937>
+        FRANCHISE = globe
+        NETWORK = globe
+        DESC  = Globe prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)937(([0-2]|[4-7]|9)\d{6})$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </GLOBEPREPAID_937>
+   
+   # ------------------------ TOUCH PREPAID RANGES -------------------------
+   
+   <TOUCHMOBILE_916>
+        FRANCHISE = touch
+        NETWORK = touch
+        DESC  = Touch Mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)916(8[2-9]|9\d|1([0-7]|[89]))\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </TOUCHMOBILE_916>
+   
+   <TOUCHMOBILE_926>
+        FRANCHISE = touch
+        NETWORK = touch
+        DESC  = Touch Mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)926(1[0-9]|[2-5]\d|60|7[6-9]|8\d|9\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </TOUCHMOBILE_926>
+   
+   <TOUCHMOBILE_905>
+        FRANCHISE = touch
+        NETWORK = touch
+        DESC  = Touch Mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)905(1\d|5[89]|82|6([0-5]|[7-9])|7[0-9]|8[0-9]|9[0-7])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </TOUCHMOBILE_905>
+   
+   <TOUCHMOBILE_906>
+        FRANCHISE = touch
+        NETWORK = touch
+        DESC  = Touch Mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)906(1([0-5]|[6-9])|[678]\d|8[2-9]|9[0-7])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </TOUCHMOBILE_906>
+
+   <TOUCHMOBILE_935>
+        FRANCHISE = touch
+        NETWORK = touch
+        DESC  = Touch Mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)935\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </TOUCHMOBILE_935>
+   
+   
+   # ------------------------ SMART POSTPAID RANGES ------------------------- 
+   # 9189xxxxxx - HLR4 - GOLD
+   # 92090xxxxx - HLR12 - GOLD
+   # 92092xxxxx - HLR13 - ADDICT
+   # 9188xxxxxx - HLR13 - INFINITY
+   # 92097xxxxx - HLR13 - INFINITY
+
+   # For now all (63|0)9209(x) are post paid
+   # 639189
+   # 639199
+   # 639209
+   # 639285
+   # 639288
+
+   <SMARTPOSTPAID>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(19(9[19]\d|54\d)|20(931|98\d)|28(5[012]\d|8\d{2}))\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID>
+
+   <SMARTPOSTPAID_GOLD>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+ 	RANGE = ^\+?(63|0)9(189\d|2855)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD>      
+
+   <SMARTPOSTPAID_GOLD_908>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+ 	RANGE = ^\+?(63|0)9(088)([1-46]\d|8[1-9]|7[2-9]|9\d)\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD_908>      
+
+   <SMARTPOSTPAID_GOLD_0920>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)9(209)([0-1]\d{2}|32[6-9]|38\d|4[5-9]\d|[5-7]\d{2}|99\d)\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD_0920>
+
+   <SMARTPOSTPAID_GOLD_0939>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)9(39)(9[0-8])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD_0939>
+
+   <SMARTPOSTPAID_GOLD_0947>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)9(47)([89]9)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD_0947>
+
+   <SMARTPOSTPAID_GOLD_999>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Gold postpaid subscribers
+        TYPE  = postpaid
+ 	RANGE = ^\+?(63|0)9(99)(88|99)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_GOLD_999>      
+
+   <SMARTPREPAID_REDMOBILE_938>
+        FRANCHISE = redmobile
+        NETWORK = smart
+        DESC  = Red mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(38)\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SMARTPREPAID_REDMOBILE_938>
+
+   <SMARTPREPAID_REDMOBILE_999>
+        FRANCHISE = redmobile
+        NETWORK = smart
+        DESC  = Red mobile prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(99)(2\d|6[125]|80|90|00)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SMARTPREPAID_REDMOBILE_999>
+
+   <SMARTPOSTPAID_ADDICT>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Addict postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(209)(2[0-8]\d|29[0-9]|4[0-4]\d)\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_ADDICT>
+      
+   <SMARTPOSTPAID_INFINITY9188>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Infinity postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(188)\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_INFINITY9188>
+
+   <SMARTPOSTPAID_INFINITY_908>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Infinity postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(08)(85\d|880)\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_INFINITY_908>
+
+   <SMARTPOSTPAID_INFINITY_0939>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Infinity postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)9(3999)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_INFINITY_0939>
+
+   <SMARTPOSTPAID_INFINITY_0949>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart Infinity postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(49)(888|999)\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPOSTPAID_INFINITY_0949>
+
+   <SMARTBROPOSTPAID>
+        FRANCHISE = smartbro
+        NETWORK = smart
+        DESC  = Smartbro postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(63|0)9(0887[01]\d|479(0[0-9]\d|1[0-6]\d|170)|49(38|51)\d{2})\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTBROPOSTPAID>
+
+   # ------------------------- SMART PREPAID RANGES -------------------------    
+
+   # 2007-04-17 new mobile range 639091 and 639291
+   # 
+   <SMARTPREPAID>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(18[0-6]\d{2}|19([0-468]\d{2}|5(0|[1-3]|[5-9])\d|9[02-8]\d)|21\d{3}|28([23467]\d{2}|59\d)|29([1-8]\d{2}|9[0-7]\d)|08[0-79]\d{2})\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPREPAID>
+
+   <SMARTPREPAID_COM3GBUDDY9289>
+       FRANCHISE = smart
+       NETWORK = smart
+       DESC  = Smart Commercial SIM for 3G Buddy
+       TYPE  = prepaid
+       RANGE = ^\+?(0|63)9(289)\d{6}$
+       MSISDN_POSIBLE_FORMAT = \+?(0|63)
+       MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPREPAID_COM3GBUDDY9289>
+   
+   <SMARTPINOY>
+        FRANCHISE = smartpinoy
+        NETWORK = smart
+        DESC  = Smartpinoy prepaid subscribers
+        TYPE  = prepaid
+ 	RANGE = ^\+?(63|0)9(281[4-9])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTPINOY>      
+
+   <SMART_BUDDY_0920>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy non commercial
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(20)(1\d{4}|2[0-9]\d{3}|4\d{4}|5[0-8]\d{3}|59[0-7]\d{2}|599\d{2}|6\d{4}|8[0-7]\d{3}|880\d{2}|89\d{3})\d{2}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0920>
+
+   <SMART_BUDDY_0939>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy non commercial
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(39)(1[0-9]|2\d|3\d|4\d|5\d|6[0-5]|7[1-9]|8\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0939>
+
+   <SMART_BUDDY_0947>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy non commercial
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(47)(1[4-9]\d|[2-5]\d{2}|6[0-4]\d|69\d|7\d{2}|8[0-8]\d|9[2-8]\d)\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0947>
+
+   <SMART_BUDDY_0949>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(49)(1[1-9]\d|3[01-79]\d|[467]\d{2}|5[036-9]\d|550|55[6-9]|8[0-7]\d|88[0-7]|89\d|9[0-8]\d|99[0-8])\d{4}$ 
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0949>
+
+
+   <SMART_BUDDY_0998>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(98)\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0998>
+
+   <SMART_BUDDY_0999>
+        FRANCHISE = smart
+        NETWORK = smart
+        DESC  = Smart buddy 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(99)(3\d|4\d|5\d|6[6-9]|7\d|8[1-7]|89|9[1-8])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMART_BUDDY_0999>
+
+   # ---------------------- TALK N TEXT PREPAID RANGES ----------------------
+   
+   <TALKNTEXT>
+        FRANCHISE = talkntext
+        NETWORK = smart
+        DESC  = TalkNText prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(1[89]7\d|10\d{2}|09\d{2}|07\d{2}|285[34678]|30\d{2})\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </TALKNTEXT>
+      
+   <TALKNTEXT_NON_COMMERCIAL>
+        FRANCHISE = talkntext
+        NETWORK = smart
+        DESC  = TalkNText prepaid subscribers non commercial
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(12)\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </TALKNTEXT_NON_COMMERCIAL>
+
+   <TALKNTEXT_0920>
+        FRANCHISE = talkntext
+        NETWORK = smart
+        DESC  = TalkNText prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(20)(3\d{2}|7\d{2}|88[1-9])\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </TALKNTEXT_0920>
+
+   <TALKNTEXT_0946>
+        FRANCHISE = talkntext
+        NETWORK = smart
+        DESC  = TalkNText prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(46)\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </TALKNTEXT_0946>
+
+   <TALKNTEXT_0948>
+        FRANCHISE = talkntext
+        NETWORK = smart
+        DESC  = TalkNText prepaid subscribers 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9(48)(1[2-5]|4\d|[2-3]\d|[5-8]\d|9\d)\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </TALKNTEXT_0948>
+
+   <SMARTBROPREPAID>
+        FRANCHISE = smartbro
+        NETWORK = smart
+        DESC  = Smartbro prepaid subscribers
+        TYPE  = prepaid
+        RANGE = ^\+?(63|0)9(281[0-3]\d|299[89]\d|39(6[6-9]|70)\d|47(1[1-3]|6[78])\d|495([24]\d|5[1-4])|99(1[1-4]|6[034])\d)\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 63
+   </SMARTBROPREPAID>
+
+   # ---------------------- SUN CELLULAR PREPAID RANGES ----------------------   
+
+   <SUNCELLULAR_POSTPAID>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular postpaid subscribers
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)922(8\d{6}|92[28]\d{4})$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_POSTPAID>
+
+   <SUNCELLULAR_PREPAID>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)922([0-7]\d{6}|9[013456789]\d{5}|92[01345679]\d{4})$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID>
+   
+  <SUNCELLULAR_PREPAID_932>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)932([1-79])\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_932>
+
+   <SUNCELLULAR_POSTPAID_932>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular postpaid 
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)932(8\d{6})$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_POSTPAID_932>
+
+   <SUNCELLULAR_PREPAID_942>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)942\d{7}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_942>
+
+   <SUNCELLULAR_POSTPAID_925>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular postpaid 09255 and 09256 
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)925[56]\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_POSTPAID_925>
+
+   <SUNCELLULAR_PREPAID_925>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid 0925 
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)925[01234789]\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_925>
+
+   <SUNCELLULAR_LANDLINE>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular Landline, for now treated as postpaid 
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)229(04|86)\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_LANDLINE>
+
+   <SUNCELLULAR_PREPAID_923>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)923([0-6]\d{2}|[8-9]\d{2}|7([0-1]\d|[5-6]\d))\d{4}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_923>
+
+   <SUNCELLULAR_POSTPAID_923>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular postpaid
+        TYPE  = postpaid
+        RANGE = ^\+?(0|63)923(7[2-4])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_POSTPAID_923>
+
+   <SUNCELLULAR_PREPAID_943A>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)943(0\d{3}|1[1-4]\d{2}|15[1-6]\d|157[0-2])\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_943A>
+
+   <SUNCELLULAR_PREPAID_943B>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)943(163[2-9]|16[4-9]\d|1[7-9]\d{2}|[2-9]\d{3})\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_943B>
+
+   <SUNCELLULAR_PREPAID_933A>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933([0-6])\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_933A>
+
+   <SUNCELLULAR_PREPAID_933B>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)93372\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_933B>
+
+   <SUNCELLULAR_PREPAID_933C>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933758(51[5-9]|5[2-9]\d|[6-9]\d{2})\d$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_933C>
+
+   <SUNCELLULAR_PREPAID_933D>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933767(60[3-9]|6[1-9]\d|[7-9]\d{2})\d$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_933D>
+
+   <SUNCELLULAR_PREPAID_933E>
+        FRANCHISE = sun
+        NETWORK = sun
+        DESC  = Sun cellular prepaid
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933([8-9])\d{6}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_PREPAID_933E>
+
+  <SUNCELLULAR_SBW_923>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)923(7[7-9])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULARSBW_923>
+   
+   <SUNCELLULAR_SBW_933A>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933(7[0-1])\d{5}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_933A>
+   
+   <SUNCELLULAR_SBW_933B>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9337([3-4]\d{4}|5[0-7]\d{3}|58[0-4]\d{2}|5850\d|5851[0-4])\d$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_933B>
+   
+   <SUNCELLULAR_SBW_933C>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9337(59\d{3}|6[0-6]\d{3}|67[0-5]\d{2}|6760[0-2])\d$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_933C>
+
+   <SUNCELLULAR_SBW_933D>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9337(6[8-9]\d|[7-8]\d{2}|9[0-8]\d|99[0-1])\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_933D>
+   
+   <SUNCELLULAR_SBW_933E>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)933(7999)\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_933E>
+
+   <SUNCELLULAR_SBW_943>
+        FRANCHISE = sunsbw
+        NETWORK = sun
+        DESC  = Sun Broadband Wireless
+        TYPE  = prepaid
+        RANGE = ^\+?(0|63)9431(57[3-4]|5[8-9]\d|6[0-1]\d|62[0-1])\d{3}$
+        MSISDN_POSIBLE_FORMAT = \+?(0|63)
+        MSISDN_XMITABLE_FORMAT = 0
+   </SUNCELLULAR_SBW_943>
+
+
+</TELCOFRANCHISE>
